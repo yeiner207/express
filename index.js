@@ -2,11 +2,6 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT;
-const products = [
-    { id: 1, name: 'Producto 1', price: 100 },
-    { id: 2, name: 'Producto 2', price: 200 },
-    { id: 3, name: 'Producto 3', price: 300 }
-]
 app.use(express.json());
 app.get('/', (req, res) => {
     res.json({
@@ -15,9 +10,10 @@ app.get('/', (req, res) => {
         status: 'success'
     });
 });
+const products = require("./date/productos")
 app.get('/products', (req, res) => {
     res.json({
-        message: 'Lista de producto',
+        message: 'Lista de productos',
         timestamp: new Date().toISOString(),
         status: 'success',
         products: products
