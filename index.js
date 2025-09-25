@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 });
 app.get('/products', (req, res) => {
     res.json({
-        message: 'Lista de productos',
+        message: 'Lista de producto',
         timestamp: new Date().toISOString(),
         status: 'success',
         products: products
