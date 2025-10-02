@@ -21,11 +21,28 @@ app.get('/products', (req, res) => {
     res.json({
         message: 'Lista de productos',
         timestamp: new Date().toISOString(),
-        status: 'success',
+        status: 'succes',
         products: products
     })
 })
+app.get("/products/:id", (req, res) => {
+    const { id } = req.params;
+    const product = products.find((product) => product.id === parseInt(id));
 
+    if (!product) {
+        return res.status(404).json({
+            message: "producto no encontrado",
+            timestamp: new Date().toDateString(),
+            status: "error",
+        });
+    }
+    res.status(200).json({
+        message: "producto",
+        timestamp: new Date().toDateString(),
+        status: "succes",
+        product: product
+    });
+})
 app.listen(PORT, () => {
     console.log(`Servidor en http://localhost:${PORT}`);
 });
